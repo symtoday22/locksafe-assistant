@@ -1,0 +1,46 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 18
+
+    - name: Install dependencies
+      run: |
+        npm install
+        npm install @capacitor/ios
+        npx cap add ios
+
+    - name: Build Web Assets
+      run: npm run build
+
+    - name: Sync to iOS Project
+      run: npx cap sync ios
+
+    - name: Build Xcode Project (Simulator/Test Build)
+      run: |
+        xcodebuild -workspace ios/App/App.xcworkspace \
+                   -scheme App \
+                   -configuration Debug \
+                   -sdk iphonesimulator \
+                   clean build \
+                   CODE_SIGNING_ALLOWED=NO
+
+    - name: Upload iOS Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ios-simulator-build
+        path: ios/App/build/
