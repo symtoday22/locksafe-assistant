@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "LockSafe Assistant",
+    "slug": "remix-locksafe-assistant",
+    "version": "1.2.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.zc9988.locksafeassistant",
+      "buildNumber": "3"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
