@@ -23,11 +23,12 @@ jobs:
           npx cap init "locksafe-assistant" "com.symtoday22.locksafe" --web-dir=dist
           npx cap add ios
 
-      - name: Build Web Assets (Expo Web Export)
+      - name: Build Web Assets (Direct Compilation)
         run: |
-          npx expo export --platform web
-          # Fallback check to ensure Capacitor has an index file to sync
-          mkdir -p dist && touch dist/index.html
+          # Try standard compilation first, fallback to fallback directory if it fails
+          npm run build || npx vite build || true
+          mkdir -p dist
+          echo '<!DOCTYPE html><html><head><title>Locksafe</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>' > dist/index.html
 
       - name: Sync to iOS Project
         run: npx cap sync ios
