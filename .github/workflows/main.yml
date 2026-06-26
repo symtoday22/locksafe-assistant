@@ -24,7 +24,8 @@ jobs:
           npx cap add ios
 
       - name: Build Web Assets
-        run: npm run build
+        run: |
+          npx vite build --base ./
 
       - name: Sync to iOS Project
         run: npx cap sync ios
@@ -44,3 +45,4 @@ jobs:
         with:
           name: ios-simulator-build
           path: ios/App/build/Build/Products/Debug-iphonesimulator/
+ 
