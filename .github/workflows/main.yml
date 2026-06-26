@@ -20,6 +20,7 @@ jobs:
         run: |
           npm install
           npm install @capacitor/ios
+          npx cap init "locksafe-assistant" "com.symtoday22.locksafe" --web-dir=build
           npx cap add ios
 
       - name: Build Web Assets
