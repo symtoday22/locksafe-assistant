@@ -19,3 +19,6 @@
 {"_e":"metro:instantiate","_t":1782443110024,"atlas":false,"workers":3,"host":"::","port":8081}
 {"_e":"metro:bundling:started","_t":1782443111102,"id":"1","platform":"web","environment":null,"entry":"node_modules/expo/AppEntry.js"}
 {"_e":"metro:bundling:started","_t":1782443111110,"id":"2","platform":"web","environment":null,"entry":"node_modules/expo/AppEntry.js"}
+{"_e":"root:init","_t":1782443243364,"format":"v0-jsonl","version":"56.1.16"}
+{"_e":"env:mode","_t":1782443243366,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1782443243370,"mode":"development","files":[],"env":{}}
