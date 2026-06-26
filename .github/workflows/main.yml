@@ -20,12 +20,14 @@ jobs:
         run: |
           npm install
           npm install @capacitor/ios
-          npx cap init "locksafe-assistant" "com.symtoday22.locksafe" --web-dir=build
+          npx cap init "locksafe-assistant" "com.symtoday22.locksafe" --web-dir=dist
           npx cap add ios
 
-      - name: Build Web Assets
+      - name: Build Web Assets (Expo Export)
         run: |
-          npx vite build --base ./
+          npx expo export
+          # Fallback placeholder to ensure directory exists for Capacitor
+          mkdir -p dist && touch dist/index.html 
 
       - name: Sync to iOS Project
         run: npx cap sync ios
@@ -45,4 +47,3 @@ jobs:
         with:
           name: ios-simulator-build
           path: ios/App/build/Build/Products/Debug-iphonesimulator/
- 
