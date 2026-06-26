@@ -25,7 +25,6 @@ jobs:
 
       - name: Build Web Assets (Direct Compilation)
         run: |
-          # Try standard compilation first, fallback to fallback directory if it fails
           npm run build || npx vite build || true
           mkdir -p dist
           echo '<!DOCTYPE html><html><head><title>Locksafe</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>' > dist/index.html
@@ -35,7 +34,8 @@ jobs:
 
       - name: Build Xcode Project (Simulator/Test Build)
         run: |
-          xcodebuild -workspace ios/App/App.xcworkspace \
+          WORKSPACE_PATH=$(find ios -name "*.xcworkspace" | head -n 1)
+          xcodebuild -workspace "$WORKSPACE_PATH" \
                      -scheme App \
                      -configuration Debug \
                      -sdk iphonesimulator \
